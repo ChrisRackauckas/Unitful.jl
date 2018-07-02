@@ -32,10 +32,10 @@ end
 # Traits for quantities using triangular dispatch
 import Base: TypeOrder, TypeArithmetic, HasOrder,
     ArithmeticRounds, ArithmeticOverflows
-(::Type{TypeOrder})(::Type{<:Quantity{<:Real}}) = HasOrder()
-(::Type{TypeArithmetic})(::Type{<:Quantity{<:AbstractFloat}}) =
+TypeOrder(::Type{<:Quantity{<:Real}}) = HasOrder()
+TypeArithmetic(::Type{<:Quantity{<:AbstractFloat}}) =
     ArithmeticRounds()
-(::Type{TypeArithmetic})(::Type{<:Quantity{<:Integer}}) =
+TypeArithmetic(::Type{<:Quantity{<:Integer}}) =
     ArithmeticOverflows()
 
 (colon(start::T, step::T, stop::T) where T <: Quantity{<:Real}) =
